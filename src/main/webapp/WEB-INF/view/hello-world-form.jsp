@@ -3,7 +3,7 @@
 <body>
 <hr>
 
-<form action="processFormV2" method="GET">
+<form action=processFormV3 method="GET">
 <label>Your name:</label>
 <input name="names">
 <input type="submit">
