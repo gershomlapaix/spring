@@ -16,6 +16,7 @@ public class Customer {
 	@NotNull(message="is required")
 	@Min(value=0, message="must be greater than or equal to zero")
 	@Max(value=10, message="must be lest than or equal to 10")
+//	using wrapper class(Integer) to make use of preprocessor to handle null values
 	private Integer freePasses;
 	
 	@Pattern(regexp="^[ax-zA-Z0-9]{5}", message="only 5 chars/digits")
