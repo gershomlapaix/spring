@@ -2,6 +2,8 @@ package com.lapaix.aopdemo.dao;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.lapaix.aopdemo.Account;
+
 public class MainDemoAPp {
 	
 	public static void main(String[] args) {
@@ -15,7 +17,7 @@ public class MainDemoAPp {
 		SillyDAO theSillyDAO = context.getBean("sillyDAO", SillyDAO.class);
 		
 		// call the business method
-		theAccountDAO.addAccount();
+		theAccountDAO.addAccount(new Account(), true);
 		theDao.addAccount();
 		theSillyDAO.addAccount();
 		
