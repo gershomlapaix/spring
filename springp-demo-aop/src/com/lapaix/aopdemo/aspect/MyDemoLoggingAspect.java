@@ -21,7 +21,8 @@ public class MyDemoLoggingAspect {
 	
 //	@Before("execution(* add*(com.lapaix.aopdemo.Account,..))")
 	
-	@Before("execution(* add*(..))")   // zero to many parameters
+//	@Before("execution(* add*(..))")   // zero to many parameters
+	@Before("execution(* com.lapaix.aopdemo.dao.*.*(..))") // package with any class and any method
 	public void beforeAddAccountAdvice() {
 		System.out.println("\n========>>> Executing @Before advice on a method");
 	}
