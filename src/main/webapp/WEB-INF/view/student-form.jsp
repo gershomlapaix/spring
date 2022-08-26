@@ -30,6 +30,12 @@
 	   	   JS<form:radiobutton path="language" value="JS"/>	   	  
 	   <br><br>
 	   
+	    Operating system: 
+	       Linux<form:checkbox path="os" value="Linux"/>
+	   	   mac OS<form:checkbox path="os" value="mac OS"/>
+	   	   WIndows<form:checkbox path="os" value="MS windows"/>	   	  
+	   <br><br>
+	   
 	   <input type="submit" value="submit"/>	
    </form:form>
 </body>
