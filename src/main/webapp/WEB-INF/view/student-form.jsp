@@ -15,6 +15,21 @@
 	   
 	   <br><br>
 	   
+	   Country: <form:select path="country">
+	     <form:option value="Brazil" label="Brazil"/>
+	     <form:option value="Rwanda" label="Rw"/>
+	     <form:option value="Chile" label="Chile"/>
+	     <form:option value="USA" label="USA"/>
+	     </form:select>	
+	   
+	   <br><br>
+	   
+	   Favorite language: 
+	       Java<form:radiobutton path="language" value="Java"/>
+	   	   PHP<form:radiobutton path="language" value="PHP"/>
+	   	   JS<form:radiobutton path="language" value="JS"/>	   	  
+	   <br><br>
+	   
 	   <input type="submit" value="submit"/>	
    </form:form>
 </body>
