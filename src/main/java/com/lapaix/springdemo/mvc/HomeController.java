@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/hello")
 public class HomeController {
 	
 	@RequestMapping("/")
@@ -40,7 +41,7 @@ public class HomeController {
 		return "confirmation";
 	}
 
-//
+//      Binding the request parameters with the method parameters
 		@RequestMapping("/processFormV3")
 		public String processFormVersion3(@RequestParam("names") String name, Model model) {
 			
