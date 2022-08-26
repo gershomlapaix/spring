@@ -7,12 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Register customer</title>
+
+<style>
+.error{
+color:red;
+}
+</style>
 </head>
 <body>
 
+<i>	Fill out the form. Asterisk(*) means required</i>
 	<form:form action="processForm" modelAttribute="customer">
 		  
-		  First name: <form:input path="firstName" />
+		  First name(*): <form:input path="firstName" />
 		  <!-- display error message if set -->
 		  <form:errors path="firstName" cssClass="error" /> 
 		   <br><br>
