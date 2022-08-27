@@ -34,7 +34,9 @@ public class MyDemoLoggingAspect {
 	
 	
 	
-	
+	/**
+	 * 
+	 
 	// Pointcut declarations
 	
 	@Pointcut("execution(* com.lapaix.aopdemo.dao.*.*(..))")
@@ -51,4 +53,7 @@ public class MyDemoLoggingAspect {
 	public void performApiAnalytics() {
 		System.out.println("\n========>>> Performing api analytics...");
 	}
+	 */
+	
+	
 }

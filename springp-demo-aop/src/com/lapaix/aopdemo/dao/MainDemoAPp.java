@@ -21,6 +21,14 @@ public class MainDemoAPp {
 		theDao.addAccount();
 		theSillyDAO.addAccount();
 		
+		//  call getter and setter methods
+		theAccountDAO.setName("foobar");
+		theAccountDAO.setServiceCode("silver");
+		
+		String name = theAccountDAO.getName();
+		String serviceCode = theAccountDAO.getServiceCode();
+		
+		
 		// close the context
 		context.close();
 	}
