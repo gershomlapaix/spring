@@ -55,32 +55,4 @@ public class MyDemoLoggingAspect {
 	}
 	 */
 	
-	
-	@Pointcut("execution(* com.lapaix.aopdemo.dao.*.*(..))")
-	public void forDaoPackage() {}
-	
-	// create pointcut for getter methods
-	@Pointcut("execution(* com.lapaix.aopdemo.dao.*.get*(..))")
-	public void getter() {}
-	
-	// create pointcut for setter methods	 
-	@Pointcut("execution(* com.lapaix.aopdemo.dao.*.set*(..))")
-	public void setter() {}
-	
-	
-	// create pointcut: include package ... exclude getter/setter
-	@Pointcut("forDaoPackage() && !(getter() || setter())")
-	private void forDaoPackageNoGetterSetter() {}
-	
-	
-	// apply on the package class methods excluding getters and setters
-	@Before("forDaoPackageNoGetterSetter()")
-	public void performApiAnalytics() {
-		System.out.println("\n========>>> Performing api analytics...");
-	}
-	
-	@Before("forDaoPackageNoGetterSetter()")
-	public void logToCloudAsync() {
-		System.out.println("\n========>>> Logging to the cloud async fashion...");
-	}
 }

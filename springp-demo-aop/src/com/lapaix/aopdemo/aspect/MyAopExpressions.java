@@ -1,7 +1,9 @@
 package com.lapaix.aopdemo.aspect;
 
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
+@Aspect
 public class MyAopExpressions {
 
 	@Pointcut("execution(* com.lapaix.aopdemo.dao.*.*(..))")
@@ -18,5 +20,5 @@ public class MyAopExpressions {
 	
 	// create pointcut: include package ... exclude getter/setter
 	@Pointcut("forDaoPackage() && !(getter() || setter())")
-	private void forDaoPackageNoGetterSetter() {}
+	public void forDaoPackageNoGetterSetter() {}
 }
