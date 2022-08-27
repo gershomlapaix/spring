@@ -1,6 +1,9 @@
 package com.lapaix.aopdemo.aspect;
 
+import java.util.List;
+
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -12,52 +15,6 @@ import com.lapaix.aopdemo.Account;
 @Aspect
 @Component
 public class MyDemoLoggingAspect {
-	
-     /*
-      * 
-  	// @Before advice
-	
-//	@Before("execution(public void com.lapaix.aopdemo.dao.AccountDAO.addAccount())")   // gonna do spying
-	
-//	@Before("execution(public void add*())")
-	
-//	@Before("execution(void add*())") // with the return type of void
-	
-//	@Before("execution(* add*())") // match any return type
-	
-//	@Before("execution(* add*(com.lapaix.aopdemo.Account))") // with the method having account class as a parameter
-	
-//	@Before("execution(* add*(com.lapaix.aopdemo.Account,..))")
-	
-//	@Before("execution(* add*(..))")   // zero to many parameters
-	@Before("execution(* com.lapaix.aopdemo.dao.*.*(..))") // package with any class and any method in the dao package
-	public void beforeAddAccountAdvice() {
-		System.out.println("\n========>>> Executing @Before advice on a method");
-	}
-      */
-	
-	
-	
-	/**
-	 * 
-	 
-	// Pointcut declarations
-	
-	@Pointcut("execution(* com.lapaix.aopdemo.dao.*.*(..))")
-	public void forDaoPackage() {}
-	
-	
-	// use the pointcut declared above
-	@Before("forDaoPackage()")
-	public void beforeAddAccountAdvice() {
-		System.out.println("\n========>>> Executing @Before advice on a method");
-	}
-	
-	@Before("forDaoPackage()")
-	public void performApiAnalytics() {
-		System.out.println("\n========>>> Performing api analytics...");
-	}
-	 */
 	
 	@Before("com.lapaix.aopdemo.aspect.MyAopExpressions.forDaoPackageNoGetterSetter()")
 	public void beforeAddAccountAdvice(JoinPoint theJoinPoint) {
@@ -84,4 +41,16 @@ public class MyDemoLoggingAspect {
 		}
 	}
 	
+	@AfterReturning(pointcut = "execution(* com.lapaix.aopdemo.dao.AccountDAO.findAccounts(..))",
+			returning="result")
+	public void afterReturningFindAccountsAdvice(JoinPoint theJoinPoint, List<Account> result)
+	{
+		
+		// print out which method we are advising
+		String method = theJoinPoint.getSignature().toString();
+		System.out.println("\n========>>> Executing @AfterReturning on method: "+ method);
+		
+		// print out the results of the method call
+		System.out.println("\n========>>> result is: "+result);
+	}	
 }

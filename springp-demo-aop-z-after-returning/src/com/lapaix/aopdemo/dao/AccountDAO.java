@@ -22,6 +22,9 @@ public class AccountDAO {
 		Account temp2 = new Account("Patrick", "Platinum");
 		Account temp3 = new Account("Nesta", "GOld");
 
+		myAccounts.add(temp3);
+		myAccounts.add(temp1);
+		myAccounts.add(temp2);
 		
 		return myAccounts;
 	}
