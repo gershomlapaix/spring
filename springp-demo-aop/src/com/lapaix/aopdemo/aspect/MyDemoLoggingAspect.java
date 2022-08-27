@@ -2,13 +2,17 @@ package com.lapaix.aopdemo.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class MyDemoLoggingAspect {
 	
-	// start with @Before advice 
+     /*
+      * 
+      * 	// @Before advice
+	
 //	@Before("execution(public void com.lapaix.aopdemo.dao.AccountDAO.addAccount())")   // gonna do spying
 	
 //	@Before("execution(public void add*())")
@@ -23,6 +27,22 @@ public class MyDemoLoggingAspect {
 	
 //	@Before("execution(* add*(..))")   // zero to many parameters
 	@Before("execution(* com.lapaix.aopdemo.dao.*.*(..))") // package with any class and any method
+	public void beforeAddAccountAdvice() {
+		System.out.println("\n========>>> Executing @Before advice on a method");
+	}
+      */
+	
+	
+	
+	
+	// Pointcut declarations
+	
+	@Pointcut("execution(* com.lapaix.aopdemo.dao.*.*(..))")
+	public void forDaoPackage() {}
+	
+	
+	// use the pointcut declared above
+	@Before("forDaoPackage()") // package with any class and any method
 	public void beforeAddAccountAdvice() {
 		System.out.println("\n========>>> Executing @Before advice on a method");
 	}
