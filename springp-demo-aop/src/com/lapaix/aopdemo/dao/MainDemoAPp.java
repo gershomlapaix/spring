@@ -17,7 +17,11 @@ public class MainDemoAPp {
 		SillyDAO theSillyDAO = context.getBean("sillyDAO", SillyDAO.class);
 		
 		// call the business method
-		theAccountDAO.addAccount(new Account(), true);
+		Account myAccount = new Account();
+		
+		myAccount.setLevel("Platinum");
+		myAccount.setName("La paix");
+		theAccountDAO.addAccount(myAccount, true);
 		theDao.addAccount();
 		theSillyDAO.addAccount();
 		

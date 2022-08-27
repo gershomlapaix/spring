@@ -7,6 +7,8 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
+import com.lapaix.aopdemo.Account;
+
 @Aspect
 @Component
 public class MyDemoLoggingAspect {
@@ -66,6 +68,20 @@ public class MyDemoLoggingAspect {
 		System.out.println("\nMethod: "+ methodSig+"\n\n");
 		
 		// display method arguments
+		Object[] args = theJoinPoint.getArgs();
+		
+		// loop thru args
+		
+		for(Object tempArg: args) {
+			System.out.println(tempArg);
+			
+			if(tempArg instanceof Account){
+				// downcast and print Account data
+				
+				Account theAccount = (Account) tempArg;
+				System.out.println("account name: "+theAccount.getName());
+			}
+		}
 	}
 	
 }
