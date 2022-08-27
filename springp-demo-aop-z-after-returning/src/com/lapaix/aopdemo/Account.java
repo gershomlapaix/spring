@@ -6,6 +6,15 @@ public class Account {
 	private String level;
 	private String name;
 	
+	public Account() {}
+	
+	public Account( String name, String level) {
+		this.level = level;
+		this.name = name;
+	}
+
+
+
 	public String getLevel() {
 		return level;
 	}
@@ -20,6 +29,13 @@ public class Account {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Account [level=" + level + ", name=" + name + "]";
 	}
 	
 	
