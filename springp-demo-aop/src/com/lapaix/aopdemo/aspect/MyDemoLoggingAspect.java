@@ -26,7 +26,7 @@ public class MyDemoLoggingAspect {
 //	@Before("execution(* add*(com.lapaix.aopdemo.Account,..))")
 	
 //	@Before("execution(* add*(..))")   // zero to many parameters
-	@Before("execution(* com.lapaix.aopdemo.dao.*.*(..))") // package with any class and any method
+	@Before("execution(* com.lapaix.aopdemo.dao.*.*(..))") // package with any class and any method in the dao package
 	public void beforeAddAccountAdvice() {
 		System.out.println("\n========>>> Executing @Before advice on a method");
 	}
@@ -42,8 +42,13 @@ public class MyDemoLoggingAspect {
 	
 	
 	// use the pointcut declared above
-	@Before("forDaoPackage()") // package with any class and any method
+	@Before("forDaoPackage()")
 	public void beforeAddAccountAdvice() {
 		System.out.println("\n========>>> Executing @Before advice on a method");
+	}
+	
+	@Before("forDaoPackage()")
+	public void performApiAnalytics() {
+		System.out.println("\n========>>> Performing api analytics...");
 	}
 }
