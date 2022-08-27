@@ -21,7 +21,7 @@ public class MainDemoAPp {
 		
 		myAccount.setLevel("Platinum");
 		myAccount.setName("La paix");
-		theAccountDAO.addAccount(myAccount, true);
+		theAccountDAO.addAccount(myAccount , true);
 		theDao.addAccount();
 		theSillyDAO.addAccount();
 		
