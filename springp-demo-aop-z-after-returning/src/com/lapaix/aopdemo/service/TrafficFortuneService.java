@@ -2,6 +2,9 @@ package com.lapaix.aopdemo.service;
 
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.stereotype.Component;
+
+@Component        // again..., enable component scanning by spring container
 public class TrafficFortuneService {
 	
 	public String getFortune() {
