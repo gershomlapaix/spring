@@ -3,9 +3,11 @@ package com.lapaix.aopdemo.aspect;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -17,6 +19,35 @@ import com.lapaix.aopdemo.Account;
 @Aspect
 @Component
 public class MyDemoLoggingAspect {
+	
+	
+	/** 
+	 * @Around: combination of @Before and @After, and also with fine grained stuffs
+	 * ProceedingJoinPoint : a handle to the target method
+	*/
+	@Around("execution(* com.lapaix.aopdemo.service.*.getFortune(..))")
+	public Object aroundGetFortune(ProceedingJoinPoint theproJoinPoint)throws Throwable {
+		// print the method we are advising on
+		// print out which method we are advising on
+			String methodSig =  theproJoinPoint.getSignature().toShortString()	;
+				System.out.println("\n========>>> Executing @Around on method: "+ methodSig);
+
+		// get begin timestamp
+				long begin = System.currentTimeMillis();
+		
+		// execute the method
+				Object result = theproJoinPoint.proceed();
+		
+		// get the end timestamp
+				long end = System.currentTimeMillis();
+		
+		
+		// compute the duration and display it
+				long duration  = end - begin;
+				System.err.println("\n Duration taken to execute the method : "+duration/1000.0+ " secs");
+	
+				return result;
+	}
 	
 	// @After implementation:  runs regardless what ( works as finally block)
 	@After("execution(* com.lapaix.aopdemo.dao.AccountDAO.findAccounts(..))")
