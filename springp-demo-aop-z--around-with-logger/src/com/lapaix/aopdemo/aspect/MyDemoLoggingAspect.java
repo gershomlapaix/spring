@@ -1,6 +1,7 @@
 package com.lapaix.aopdemo.aspect;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -15,11 +16,13 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 import com.lapaix.aopdemo.Account;
+import com.lapaix.aopdemo.dao.AroundDemoApp;
 
 @Aspect
 @Component
 public class MyDemoLoggingAspect {
 	
+	private Logger logger = Logger.getLogger(getClass().getName());
 	
 	/** 
 	 * @Around: combination of @Before and @After, and also with fine grained stuffs
@@ -30,7 +33,7 @@ public class MyDemoLoggingAspect {
 		// print the method we are advising on
 		// print out which method we are advising on
 			String methodSig =  theproJoinPoint.getSignature().toShortString()	;
-				System.out.println("\n========>>> Executing @Around on method: "+ methodSig);
+				logger.info("\n========>>> Executing @Around on method: "+ methodSig);
 
 		// get begin timestamp
 				long begin = System.currentTimeMillis();
@@ -54,7 +57,7 @@ public class MyDemoLoggingAspect {
 	public void afterFinallyFindAccountsAdvice(JoinPoint theJoinPoint) {
 		// print out which method we are advising on
 		MethodSignature methodSig = (MethodSignature) theJoinPoint.getSignature();;
-		System.out.println("\n========>>> Executing @After (finally) on method: "+ methodSig);
+		logger.info("\n========>>> Executing @After (finally) on method: "+ methodSig);
 
 	}
 	
@@ -67,20 +70,20 @@ public class MyDemoLoggingAspect {
 	public void afterThrowingFindAccountsAdvice(JoinPoint theJoinPoint, Throwable theExc) {
 		// print out which method we are advising on
 		MethodSignature methodSig = (MethodSignature) theJoinPoint.getSignature();;
-		System.out.println("\n========>>> Executing @AfterThrowing on method: "+ methodSig);
+		logger.info("\n========>>> Executing @AfterThrowing on method: "+ methodSig);
 
 		// log the exception
-		System.out.println("\n========>>> The exception is : "+ theExc);
+		logger.info("\n========>>> The exception is : "+ theExc);
 	
 	}
 	
 	@Before("com.lapaix.aopdemo.aspect.MyAopExpressions.forDaoPackageNoGetterSetter()")
 	public void beforeAddAccountAdvice(JoinPoint theJoinPoint) {
-		System.out.println("\n======>>>> Executing @Before advice on a method");
+		logger.info("\n======>>>> Executing @Before advice on a method");
 		
 		//  display the method signature
 		MethodSignature methodSig = (MethodSignature) theJoinPoint.getSignature();
-		System.out.println("\nMethod: "+ methodSig+"\n\n");
+		logger.info("\nMethod: "+ methodSig+"\n\n");
 		
 		// display method arguments
 		Object[] args = theJoinPoint.getArgs();
@@ -88,13 +91,14 @@ public class MyDemoLoggingAspect {
 		// loop thru args
 		
 		for(Object tempArg: args) {
-			System.out.println(tempArg);
+			logger.info(tempArg.toString());
+			
 			
 			if(tempArg instanceof Account){
 				// downcast and print Account data
 				
 				Account theAccount = (Account) tempArg;
-				System.out.println("account name: "+theAccount.getName());
+				logger.info("account name: "+theAccount.getName());
 			}
 		}
 	}
@@ -106,17 +110,17 @@ public class MyDemoLoggingAspect {
 		
 		// print out which method we are advising
 		String method = theJoinPoint.getSignature().toString();
-		System.out.println("\n========>>> Executing @AfterReturning on method: "+ method);
+		logger.info("\n========>>> Executing @AfterReturning on method: "+ method);
 		
 		// print out the results of the method call
-		System.out.println("\n========>>> result is: "+result);
+		logger.info("\n========>>> result is: "+result);
 		
 		// let's post-process the data ...
 		
 		convertAccountNamesToUppercase(result);
 		
 		// print out the results of the method call
-		System.out.println("\n========>>> result is: "+result);
+		logger.info("\n========>>> result is: "+result);
 		
 	}
 
