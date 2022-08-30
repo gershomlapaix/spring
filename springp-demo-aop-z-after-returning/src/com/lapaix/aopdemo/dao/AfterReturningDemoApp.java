@@ -1,5 +1,7 @@
 package com.lapaix.aopdemo.dao;
 
+import java.util.List;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.lapaix.aopdemo.Account;
@@ -13,26 +15,21 @@ public class AfterReturningDemoApp {
 		
 		// get the bean  from spring container
 		AccountDAO theAccountDAO  = context.getBean("accountDAO", AccountDAO.class);
-		MembershipDAO theDao = context.getBean("membershipDAO", MembershipDAO.class);
-		SillyDAO theSillyDAO = context.getBean("sillyDAO", SillyDAO.class);
 		
-		// call the business method
-		Account myAccount = new Account();
+		List<Account> theAccounts = null;
 		
-		myAccount.setLevel("Platinum");
-		myAccount.setName("La paix");
-		theAccountDAO.addAccount(myAccount , true);
-		theDao.addAccount();
-		theSillyDAO.addAccount();
+		try {
+			theAccounts = theAccountDAO.findAccounts();
+		}
+		catch (Exception exc) {
+			System.out.println("\n\n Main program ... caught exception: "+ exc);
+		}
 		
-		//  call getter and setter methods
-		theAccountDAO.setName("foobar");
-		theAccountDAO.setServiceCode("silver");
+		System.out.println("\n\n Main program: AfterThrowingDemoApp");
+		System.out.println("-----");
 		
-		String name = theAccountDAO.getName();
-		String serviceCode = theAccountDAO.getServiceCode();
-		
-		
+		System.out.println(theAccounts);
+		System.out.println("\n");
 		// close the context
 		context.close();
 	}
