@@ -15,23 +15,28 @@ public class AfterReturningDemoApp {
 		
 		// get the bean  from spring container
 		AccountDAO theAccountDAO  = context.getBean("accountDAO", AccountDAO.class);
+		MembershipDAO theDao = context.getBean("membershipDAO", MembershipDAO.class);
+		SillyDAO theSillyDAO = context.getBean("sillyDAO", SillyDAO.class);
 		
-		List<Account> theAccounts = null;
+		// call the business method
+		Account myAccount = new Account();
 		
-		try {
-			theAccounts = theAccountDAO.findAccounts();
-		}
-		catch (Exception exc) {
-			System.out.println("\n\n Main program ... caught exception: "+ exc);
-		}
+		myAccount.setLevel("Platinum");
+		myAccount.setName("La paix");
+		theAccountDAO.addAccount(myAccount , true);
+		theDao.addAccount();
+		theSillyDAO.addAccount();
 		
-		System.out.println("\n\n Main program: AfterThrowingDemoApp");
-		System.out.println("-----");
+		//  call getter and setter methods
+		theAccountDAO.setName("foobar");
+		theAccountDAO.setServiceCode("silver");
 		
-		System.out.println(theAccounts);
-		System.out.println("\n");
+		String name = theAccountDAO.getName();
+		String serviceCode = theAccountDAO.getServiceCode();
+		
+		
 		// close the context
-		context.close();
+		context.close();		
 	}
 	
 }

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.lapaix.aopdemo.Account;
 
-public class MainDemoAPp {
+public class MainDemoApp {
 	
 	public static void main(String[] args) {
 		
@@ -17,7 +17,7 @@ public class MainDemoAPp {
 		AccountDAO theAccountDAO  = context.getBean("accountDAO", AccountDAO.class);
 		
 		// call the method to find the accounts
-		List<Account> accounts  = theAccountDAO.findAccounts();
+		List<Account> accounts  = theAccountDAO.findAccounts(false);
 		
 		// display the accounts
 		System.out.println("\n Main program: AfterReturningDemoApp");

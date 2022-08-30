@@ -1,5 +1,7 @@
 package com.lapaix.aopdemo.dao;
 
+import java.util.List;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.lapaix.aopdemo.Account;
@@ -7,34 +9,31 @@ import com.lapaix.aopdemo.Account;
 public class AfterThrowingDemoApp {
 	
 	public static void main(String[] args) {
-		
+				
 		// read spring config java class
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DemoConfig.class);
-		
-		// get the bean  from spring container
-		AccountDAO theAccountDAO  = context.getBean("accountDAO", AccountDAO.class);
-		MembershipDAO theDao = context.getBean("membershipDAO", MembershipDAO.class);
-		SillyDAO theSillyDAO = context.getBean("sillyDAO", SillyDAO.class);
-		
-		// call the business method
-		Account myAccount = new Account();
-		
-		myAccount.setLevel("Platinum");
-		myAccount.setName("La paix");
-		theAccountDAO.addAccount(myAccount , true);
-		theDao.addAccount();
-		theSillyDAO.addAccount();
-		
-		//  call getter and setter methods
-		theAccountDAO.setName("foobar");
-		theAccountDAO.setServiceCode("silver");
-		
-		String name = theAccountDAO.getName();
-		String serviceCode = theAccountDAO.getServiceCode();
-		
-		
-		// close the context
-		context.close();
+				AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DemoConfig.class);
+				
+				// get the bean  from spring container
+				AccountDAO theAccountDAO  = context.getBean("accountDAO", AccountDAO.class);
+				
+				List<Account> theAccounts = null;
+				
+				try {
+					boolean tripWire = true;
+					theAccounts = theAccountDAO.findAccounts(tripWire);
+				}
+				catch (Exception exc) {
+					System.out.println("\n\n Main program ... caught exception: "+ exc);
+				}
+				
+				System.out.println("\n\n Main program: AfterThrowingDemoApp");
+				System.out.println("-----");
+				
+				System.out.println(theAccounts);
+				System.out.println("\n");
+				
+				// close the context
+				context.close();
 	}
 	
 }
