@@ -20,5 +20,14 @@ public class TrafficFortuneService {
 		// return a fortune
 		return "expecting heavy traffic";
 	}
+
+	public String getFortune(boolean tripWire) {
+		
+		if(tripWire) {
+			throw new RuntimeException("Major Accident! higyway is closed.");
+		}
+		
+		return getFortune();
+	}
 	
 }
