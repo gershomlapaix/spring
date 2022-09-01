@@ -26,6 +26,7 @@ public class AroundDemoApp {
 				
 				boolean tripWire = true;
 				String data = theFortuneService.getFortune(tripWire);
+				
 				logger.info("\nThe fortune data : "+ data);
 				logger.info("\nfinished");
 				// close the context
