@@ -41,6 +41,10 @@ public class MyDemoLoggingAspect {
 		// execute the method
 				Object result = null;
 				
+	// handling exceptions
+				
+				/*
+				 
 				try {
 					result = theproJoinPoint.proceed();
 				}
@@ -59,7 +63,26 @@ public class MyDemoLoggingAspect {
 		// compute the duration and display it
 				long duration  = end - begin;
 				System.err.println("\n Duration taken to execute the method : "+duration/1000.0+ " secs");
+				  
+				  */
+				
+		// rethrowing the exceptions back to the main app
 	
+				try {
+					result = theproJoinPoint.proceed();
+				}
+				catch (Exception e) {
+					throw e;
+				}
+		
+		// get the end timestamp
+				long end = System.currentTimeMillis();
+		
+		
+		// compute the duration and display it
+				long duration  = end - begin;
+				System.err.println("\n Duration taken to execute the method : "+duration/1000.0+ " secs");
+				 
 				return result;
 	}
 	
