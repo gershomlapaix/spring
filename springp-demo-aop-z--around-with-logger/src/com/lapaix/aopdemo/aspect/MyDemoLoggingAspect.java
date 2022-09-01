@@ -1,4 +1,4 @@
-package com.lapaix.aopdemo.aspect;
+	package com.lapaix.aopdemo.aspect;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -39,7 +39,18 @@ public class MyDemoLoggingAspect {
 				long begin = System.currentTimeMillis();
 		
 		// execute the method
-				Object result = theproJoinPoint.proceed();
+				Object result = null;
+				
+				try {
+					result = theproJoinPoint.proceed();
+				}
+				catch (Exception e) {
+					// log the exception
+					logger.warning(e.getMessage());
+					
+					// give a user a custom message
+					result = "Major Accident! Worry not, your private Jet is on the way!";
+				}
 		
 		// get the end timestamp
 				long end = System.currentTimeMillis();
