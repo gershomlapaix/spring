@@ -41,6 +41,7 @@
 	    <scope>provided</scope>
 	</dependency>
 	
+	<!-- This is to allow Java @PostConstruct annotation-->
 	<dependency>
 	    <groupId>javax.annotation</groupId>
 	    <artifactId>javax.annotation-api</artifactId>
