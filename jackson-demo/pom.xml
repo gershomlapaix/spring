@@ -27,6 +27,7 @@
   <build>
     <finalName>jackson-demo</finalName>
     
+    <!-- Needs to be added first -->
     <plugins>
 	    <plugin>
 	    <groupId>org.apache.maven.plugins</groupId>
