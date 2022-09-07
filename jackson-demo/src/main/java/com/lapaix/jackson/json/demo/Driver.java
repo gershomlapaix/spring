@@ -1,6 +1,7 @@
 package com.lapaix.jackson.json.demo;
 
 import java.io.File;
+import java.util.Iterator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -18,10 +19,17 @@ public class Driver {
 					new File("data/sample-full.json"), Student.class);
 			
 			// print first name and last name
+			System.out.println("\n\n");
 			System.out.println("First name : "+ theStudent.getFirstName());
 			System.out.println("First name : "+ theStudent.getLastName());
 			
 			Address tempAddress = theStudent.getAddress();
+			System.out.println("The street is "+ tempAddress.getStreet() + " in "+ tempAddress.getCountry());
+			
+			System.out.println("The languages : ");
+			for(String lang: theStudent.getLanguages()) {
+				System.out.println(lang);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
