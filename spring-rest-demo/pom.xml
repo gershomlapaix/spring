@@ -11,7 +11,10 @@
   <url>http://maven.apache.org</url>
 
   <properties>
+  <!-- Manually add it-->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -41,6 +44,7 @@
    <build>
     <finalName>spring-rest-pro</finalName>
     
+    <!-- add this too-->
      <plugins>
 	    <plugin>
 	    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
