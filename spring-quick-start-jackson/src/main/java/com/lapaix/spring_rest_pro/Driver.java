@@ -1,4 +1,4 @@
-package com.lapaix.jackson.json.demo;
+package com.lapaix.spring_rest_pro;
 
 import java.io.File;
 import java.util.Iterator;
