@@ -13,15 +13,22 @@ import com.lapaix.spring_rest_demo.entity.Student;
 @RequestMapping("/api")
 public class StudentRestController {
 	
+	List<Student> theStudents;
+	
+	// define @PostContstruct to load the student data .... only once
+	
+	@PostConstruct
+	public void loadData() {
+		theStudents = new ArrayList<Student>();
+		theStudents.add(new Student("Patrick", "Kareem"));
+		theStudents.add(new Student("Nesta", "Mario"));
+	}
+	
 	// define the endpoint for "/students"
 	
 	@GetMapping("/students")
-	public List<Student> getStudents(){
-		List<Student> students = new ArrayList<Student>();
-		
-		students.add(new Student("Patrick", "Kareem"));
-		students.add(new Student("Nesta", "Mario"));
-		return students;
+	public List<Student> getStudents(){	
+		return theStudents;
 	}
 
 }
