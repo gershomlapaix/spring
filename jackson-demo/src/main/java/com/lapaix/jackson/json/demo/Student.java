@@ -10,6 +10,9 @@ public class Student {
 	private String lastName;
 	private boolean active;
 	
+	private  Address address;
+	private String[] languages;
+	
 	public int getId() {
 		return id;
 	}
@@ -34,6 +37,21 @@ public class Student {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-
+	
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	public String[] getLanguages() {
+		return languages;
+	}
+	public void setLanguages(String[] languages) {
+		this.languages = languages;
+	}
+	
+	
 	
 }
